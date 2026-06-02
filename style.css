@@ -28,10 +28,10 @@ display: flex;
 flex-direction: column;
 align-items: center;
 
-padding: 40px 20px;
+padding: 0;
 }
 
-/* ===== FONDO FIJO ESTABLE (FIX ZOOM) ===== */
+/* ===== FONDO FIJO ESTABLE ===== */
 .fondo-barberia {
 position: fixed;
 inset: 0;
@@ -53,9 +53,8 @@ will-change: transform;
 backface-visibility: hidden;
 }
 
-/* HEADER */
+/* HEADER FIJO */
 .header {
-text-align: center;
 position: fixed;
 top: 0;
 left: 0;
@@ -63,8 +62,8 @@ width: 100%;
 
 z-index: 10;
 
-padding: 8px 15px;
-min-height: 160px;
+padding: 10px 15px;
+min-height: 150px;
 
 display: flex;
 flex-direction: column;
@@ -80,13 +79,12 @@ flex-wrap: wrap;
 
 .titulo {
 font-family: 'Playfair Display', serif;
-font-size: 4rem;
+font-size: 3.5rem;
 font-weight: 800;
 text-transform: uppercase;
-letter-spacing: 6px;
+letter-spacing: 5px;
 
 width: 100%;
-max-width: 100%;
 
 background: linear-gradient(
 135deg,
@@ -106,7 +104,6 @@ background-size: 200% auto;
 animation: brilloMetalico 4s linear infinite;
 
 overflow-wrap: anywhere;
-word-break: break-word;
 }
 
 @keyframes brilloMetalico {
@@ -120,27 +117,33 @@ word-break: break-word;
 width: 100%;
 max-width: 480px;
 
-margin-top: 170px;
-margin-bottom: 40px;
+margin-top: 180px;
+margin-bottom: 60px;
+
+position: relative;
+z-index: 1;
 }
 
-/* FORMULARIO (REDUCIDO Y MÁS LIMPIO) */
+/* FORMULARIO CON SCROLL INTERNO */
 .agendamiento {
 background: rgba(25, 25, 25, 0.25);
 backdrop-filter: blur(6px);
 -webkit-backdrop-filter: blur(6px);
 
-padding: 25px 20px;
+padding: 20px 18px;
 border-radius: 14px;
 
 border: 1px solid rgba(255, 255, 255, 0.08);
-
 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 
-max-height: 80vh;
+/* 🔥 SCROLL INTERNO REAL */
+max-height: calc(100vh - 200px);
 overflow-y: auto;
+
+scroll-behavior: smooth;
 }
 
+/* TITULO FORM */
 .agendamiento h2 {
 text-align: center;
 font-size: 1.4rem;
@@ -174,7 +177,7 @@ text-transform: uppercase;
 letter-spacing: 1px;
 }
 
-/* INPUTS MÁS COMPACTOS */
+/* INPUTS */
 input[type="text"],
 input[type="tel"],
 input[type="date"],
@@ -222,6 +225,9 @@ letter-spacing: 2px;
 
 margin-top: 10px;
 
+position: relative;
+z-index: 2;
+
 transition: 0.3s ease;
 }
 
@@ -233,15 +239,14 @@ transform: translateY(-2px);
 @media (max-width: 480px) {
 
 .titulo {
-font-size: 2.4rem;
-}
-
-.agendamiento {
-padding: 20px 15px;
-max-height: 75vh;
+font-size: 2.2rem;
 }
 
 .container {
-margin-top: 150px;
+margin-top: 160px;
+}
+
+.agendamiento {
+max-height: calc(100vh - 170px);
 }
 }
