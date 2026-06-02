@@ -22,7 +22,7 @@
 
         body {
             min-height: 100vh;
-            color: #fff;
+            color: white;
             background: url("assets/fondo-barberia1.jpg") no-repeat center center;
             background-size: cover;
             position: relative;
@@ -30,17 +30,25 @@
             flex-direction: column;
         }
 
-        /* Capa escura sobre a imagem */
+        /* Overlay elegante */
         body::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.72);
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.60)
+                );
+
             z-index: 0;
         }
 
         header,
-        .container,
+        main,
         footer {
             position: relative;
             z-index: 1;
@@ -48,10 +56,8 @@
 
         /* HEADER */
         header {
-            padding: 25px 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
+            padding: 25px 20px;
         }
 
         header h1 {
@@ -59,23 +65,26 @@
             font-weight: 700;
             letter-spacing: 2px;
 
-            background: linear-gradient(135deg,
-                    #b38728 0%,
-                    #fbf5b7 25%,
-                    #daa520 50%,
-                    #fbf5b7 75%,
-                    #aa771c 100%);
+            background: linear-gradient(
+                135deg,
+                #b38728 0%,
+                #fbf5b7 25%,
+                #daa520 50%,
+                #fbf5b7 75%,
+                #aa771c 100%
+            );
 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
 
+            background-size: 200% auto;
+
+            animation: brilhoMetalico 5s linear infinite;
+
             text-shadow:
                 0 4px 10px rgba(0, 0, 0, .8),
-                0 0 25px rgba(218, 165, 32, .2);
-
-            background-size: 200% auto;
-            animation: brilhoMetalico 5s linear infinite;
+                0 0 25px rgba(218, 165, 32, .25);
         }
 
         @keyframes brilhoMetalico {
@@ -94,80 +103,109 @@
 
         header p {
             margin-top: 10px;
-            color: #d8d8d8;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            color: #e4e4e4;
         }
 
-        /* CONTEÚDO CENTRAL */
-        .container {
+        /* CONTEÚDO PRINCIPAL */
+        main {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px 20px;
-            text-align: center;
+            padding: 20px;
         }
 
         .card-apresentacao {
             width: 100%;
-            max-width: 750px;
-            padding: 50px 35px;
-            border-radius: 20px;
+            max-width: 850px;
 
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            text-align: center;
 
-            border: 1px solid rgba(255, 255, 255, 0.10);
+            padding: 20px;
 
-            box-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background: transparent;
+
+            text-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.9);
+
+            animation: fadeUp 1s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .card-apresentacao h2 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.1;
             margin-bottom: 25px;
-            font-weight: 600;
         }
 
         .card-apresentacao p {
-            color: #e5e5e5;
+            max-width: 700px;
+
+            font-size: 1.1rem;
             line-height: 1.9;
-            font-size: 1rem;
+
+            color: #f2f2f2;
+
             margin-bottom: 40px;
         }
 
         /* BOTÃO */
         .btn {
             display: inline-block;
+
             text-decoration: none;
 
-            padding: 15px 35px;
+            background: linear-gradient(
+                135deg,
+                #d4af37,
+                #f7d774
+            );
+
+            color: black;
+
+            padding: 16px 38px;
 
             border-radius: 8px;
 
             font-size: 1rem;
             font-weight: 600;
 
-            color: #000;
-
-            background: linear-gradient(135deg,
-                    #d4af37,
-                    #f5d76e);
-
-            transition: 0.3s ease;
+            transition: .3s ease;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 30px rgba(212, 175, 55, .45);
         }
 
         /* FOOTER */
         footer {
             text-align: center;
             padding: 20px;
-            color: #c4c4c4;
-            font-size: 0.85rem;
+
+            color: #d0d0d0;
+
+            font-size: .9rem;
         }
 
         /* RESPONSIVO */
@@ -177,22 +215,13 @@
                 padding: 20px 15px;
             }
 
-            .container {
-                padding: 20px;
-            }
-
-            .card-apresentacao {
-                padding: 35px 25px;
-            }
-
             .card-apresentacao h2 {
-                margin-bottom: 20px;
+                font-size: 2.2rem;
             }
 
             .card-apresentacao p {
-                font-size: 0.95rem;
+                font-size: .95rem;
                 line-height: 1.8;
-                margin-bottom: 30px;
             }
 
             .btn {
@@ -200,19 +229,32 @@
                 max-width: 280px;
             }
         }
+
+        @media (max-width: 480px) {
+
+            .card-apresentacao h2 {
+                font-size: 1.9rem;
+            }
+
+            .card-apresentacao p {
+                font-size: .9rem;
+            }
+
+            header p {
+                font-size: .9rem;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
     <header>
         <h1>Barbearia Nilson</h1>
         <p>Agende seu horário em poucos cliques</p>
     </header>
 
-    <!-- APRESENTAÇÃO -->
-    <main class="container">
+    <main>
 
         <div class="card-apresentacao">
 
@@ -221,9 +263,8 @@
             <p>
                 Na Barbearia Nilson você encontra cortes modernos,
                 atendimento de qualidade e um ambiente profissional.
-                Trabalhamos com dedicação para oferecer a melhor experiência,
-                valorizando seu estilo e seu tempo.
-                Agende seu horário online de forma rápida e prática.
+                Trabalhamos para oferecer a melhor experiência,
+                valorizando seu estilo, sua imagem e seu tempo.
             </p>
 
             <a href="index-agendamento.html" class="btn">
@@ -234,7 +275,6 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer>
         © 2026 Barbearia Nilson. Todos os direitos reservados.
     </footer>
@@ -242,4 +282,3 @@
 </body>
 
 </html>
-    © 
