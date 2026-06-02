@@ -1,401 +1,512 @@
 :root {
-  --dorado-premium: #c5a880;
-  --dorado-brillante: #e5c158;
-  --blanco-puro: #ffffff;
-  --texto-secundario: #cccccc;
-  --fuente-elegante: 'Poppins', sans-serif;
+--dorado-premium: #c5a880;
+--dorado-brillante: #e5c158;
+--blanco-puro: #ffffff;
+--texto-secundario: #cccccc;
+--fuente-elegante: 'Poppins', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+• {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
-body { 
-  font-family: var(--fuente-elegante);
-  /* FIX: El body ahora es transparente para dejar ver el div de fondo sin capas extras */
-  background: transparent; 
-  overscroll-behavior: none;
-  color: var(--blanco-puro);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-} 
 
-/* ===== AJUSTE CLAVE PARA TU DIV DE HTML ===== */
+body {
+
+font-family: 'Poppins', sans-serif;
+background-image: linear-gradient(rgba(0, 0, 0, 0.384), rgba(10, 10, 10, 0.82)),
+url('assets/fondo-barberia2.jpg');
+
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+background-repeat: no-repeat;
+
+overscroll-behavior: none;
+background-color: #121212;
+
+color: var(--blanco-puro);
+font-family: var(--fuente-elegante);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 40px 20px;
+
+
+}
+
 .fondo-barberia {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh; 
-  
-  /* Aquí cargamos tu imagen con el degradado oscuro */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(10, 10, 10, 0.85)), url('assets/fondo-barberia2.jpg'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-  
-  /* Se asegura de ir al fondo absoluto y no interferir con los clics del usuario */
-  z-index: -1;
-  pointer-events: none;
-  background-color: #121212;
-  
-  /* Aceleración por hardware para fluidez total en celulares */
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0); 
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; 
+position: fixed;
+/* Fijamos los 4 lados para congelar el tamaño de forma física /
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+width: 100%;
+/ Usamos una altura dinámica que bloquea el redimensionamiento */
+height: 100vh;
+
+background-image: linear-gradient(rgba(0, 0, 0, 0.21), rgba(10, 10, 10, 0.82)),
+url('assets/fondo-barberia.jpg');
+
+background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+
+z-index: -1;
+pointer-events: none;
+background-color: #121212;
+/* TRUCO CLAVE: Fuerza al celular a renderizar el fondo usando la tarjeta gráfica (GPU).
+Esto congela la imagen y evita que el scroll recalcule el tamaño de la foto */
+transform: translate3d(0, 0, 0);
+-webkit-transform: translate3d(0, 0, 0);
+
+/* Evita parpadeos visuales durante el desplazamiento */
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+
 }
+
+
 
 html {
-  overscroll-behavior: none;
-  background-color: #121212; /* Color base de respaldo */
-} 
+overscroll-behavior: none;
+}
 
 .header {
-  text-align: center;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  padding: 8px 15px;
-  border-bottom: 1px solid rgba(239, 217, 16, 0.21);
-  position: fixed;
-  width: 100%;
-  min-height: 175px;
-  background-color: rgba(18, 17, 17, 0.85); 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  overflow: hidden;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-} 
+text-align: center;
+top: 0;
+left: 0;
+z-index: 10;
+padding: 8px 15px;
+background: rgba(18, 17, 17, 0.756);
+border-bottom: 1px solid rgba(239, 217, 16, 0.21);
+position: fixed;
+width: 100%;
+min-height: 175px;
+background-color: rgba(0, 0, 0, 0.388);
 
-.titulo { 
-  font-family: 'Playfair Display', 'Cinzel', 'Georgia', serif;
-  font-size: 4rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  text-align: center;
-  margin: 30px 8px; 
-  background: linear-gradient(
-    135deg,
-    #b38728 0%,
-    #fbf5b7 25%,
-    #daa520 50%,
-    #fbf5b7 75%,
-    #aa771c 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text; 
-  text-shadow:
-    0px 4px 10px rgba(0, 0, 0, 0.9),
-    0px 0px 25px rgba(218, 165, 32, 0.2); 
-  background-size: 200% auto;
-  animation: brilloMetalico 4s linear infinite;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box; 
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: break-word; 
-  padding: 0 10px;
-} 
+/* RESPONSIVO */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
+/* evita que el contenido se salga */
+overflow: hidden;
+box-sizing: border-box;
+}
+
+.titulo {
+
+/* Tipografía y alineación */
+font-family: 'Playfair Display', 'Cinzel', 'Georgia', serif;
+font-size: 4rem;
+font-weight: 800;
+text-transform: uppercase;
+letter-spacing: 6px;
+text-align: center;
+margin: 30px 8;
+
+/* Efecto de color dorado metálico brillante */
+background: linear-gradient(
+135deg,
+#b38728 0%,
+#fbf5b7 25%,
+#daa520 50%,
+#fbf5b7 75%,
+#aa771c 100%
+);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+
+/* Sombra 3D profunda y brillo elegante */
+text-shadow:
+0px 4px 10px rgba(0, 0, 0, 0.9),
+0px 0px 25px rgba(218, 165, 32, 0.2);
+
+/* Animación sutil de brillo continuo */
+background-size: 200% auto;
+animation: brilloMetalico 4s linear infinite;
+}
+
+/* Animación para el reflejo brillante */
 @keyframes brilloMetalico {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-} 
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
 
+/* Contenedor oscuro de fondo (indispensable para el contraste) */
 .contenedor-oscuro {
-  background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
-  padding: 60px;
-  border: 1px solid rgba(218, 165, 32, 0.15);
-  box-shadow: inset 0 0 100px rgba(0,0,0,0.8); 
+background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+padding: 60px;
+border: 1px solid rgba(218, 165, 32, 0.15);
+box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+
+}
+
+
+.bienvenida {
+color: rgb(203, 203, 203);
+
+/* RESPONSIVO */
+font-size: clamp(13px, 2vw, 17px);
+
+letter-spacing: 1px;
+text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.411);
+
+/* evita desbordes */
+text-align: center;
+max-width: 90%;
+line-height: 1.4;
+word-wrap: break-word;
+}
+
+/* CELULARES PEQUEÑOS */
+@media (max-width: 480px) {
+.header {
+min-height: 150px;
+padding: 10px;
+}
+
+.titulo {
+padding: 5px 0;
 }
 
 .bienvenida {
-  color: rgb(203, 203, 203); 
-  font-size: clamp(13px, 2vw, 17px); 
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.411); 
-  text-align: center;
-  max-width: 90%;
-  line-height: 1.4;
-  word-wrap: break-word;
-} 
-
+margin-top: 5px;
+}
+}
 .container {
-  width: 100%;
-  max-width: 480px;
-  margin-top: 190px; 
-  margin-bottom: 40px;
-} 
+width: 100%;
+max-width: 480px;
+width: 100%;
+max-width: 480px;
+margin-top: 180px;
+margin-bottom: 40px;
+}
 
 .agendamiento {
-  background: rgba(25, 25, 25, 0.247);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 40px 35px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.338);
-  
-  /* Scroll interno si el formulario sobrepasa la pantalla */
-  max-height: calc(100vh - 240px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-} 
+background: rgba(25, 25, 25, 0.247);
+backdrop-filter: blur(2px);
+-webkit-backdrop-filter: blur(12px);
+padding: 40px 35px;
+border-radius: 16px;
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.338);
+transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+}
 
 .agendamiento h2 {
-  font-size: 1.6rem;
-  text-align: center;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--blanco-puro);
-  font-weight: 600;
-  position: relative;
+font-size: 1.6rem;
+text-align: center;
+margin-bottom: 30px;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: var(--blanco-puro);
+font-weight: 600;
+position: relative;
 }
+
 
 .agendamiento h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: var(--dorado-premium);
-  border-radius: 2px;
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background-color: var(--dorado-premium);
+border-radius: 2px;
 }
 
+
 .campo {
-  margin-bottom: 22px;
-  display: flex;
-  flex-direction: column;
-} 
+margin-bottom: 22px;
+display: flex;
+flex-direction: column;
+}
 
-.campo label { 
-  font-size: 0.8rem;
-  color: var(--dorado-premium);
-  margin-bottom: 8px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-} 
+.campo label {
 
+font-size: 0.8rem;
+color: var(--dorado-premium);
+margin-bottom: 8px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+}
+
+/* Campos de Formulario Minimalistas */
 input[type="text"],
 input[type="tel"],
 input[type="date"],
 select {
-  background-color: rgba(40, 40, 40, 0.6);
-  color: var(--blanco-puro);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 14px 16px;
-  font-size: 1rem;
-  border-radius: 8px;
-  font-family: var(--fuente-elegante);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none;
-  width: 100%;
-} 
+background-color: rgba(40, 40, 40, 0.6);
+color: var(--blanco-puro);
+border: 1px solid rgba(255, 255, 255, 0.15);
+padding: 14px 16px;
+font-size: 1rem;
+border-radius: 8px;
+font-family: var(--fuente-elegante);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+outline: none;
+width: 100%;
+}
 
 input:focus,
 select:focus {
-  border-color: var(--dorado-premium);
-  background-color: rgba(30, 30, 30, 0.9);
-  box-shadow: 0 0 15px rgba(197, 168, 128, 0.25);
-} 
+border-color: var(--dorado-premium);
+background-color: rgba(30, 30, 30, 0.9);
+box-shadow: 0 0 15px rgba(197, 168, 128, 0.25);
+}
 
 ::placeholder {
-  color: #888888;
-} 
+color: #888888;
+}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) sepia(50%) saturate(1000%) hue-rotate(10deg);
-  cursor: pointer;
-} 
+filter: invert(1) sepia(50%) saturate(1000%) hue-rotate(10deg);
+cursor: pointer;
+}
 
 .boton {
-  background: linear-gradient(135deg, var(--dorado-premium), #a88d65);
-  color: #0a0a0a;
-  border: none;
-  padding: 16px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  box-shadow: 0 5px 15px rgba(197, 168, 128, 0.3);
-  transition: all 0.3s ease;
-  margin-top: 15px;
-} 
+background: linear-gradient(135deg, var(--dorado-premium), #a88d65);
+color: #0a0a0a;
+border: none;
+padding: 16px;
+font-size: 1.05rem;
+font-weight: 700;
+border-radius: 8px;
+cursor: pointer;
+width: 100%;
+text-transform: uppercase;
+letter-spacing: 2px;
+box-shadow: 0 5px 15px rgba(197, 168, 128, 0.3);
+transition: all 0.3s ease;
+margin-top: 15px;
+}
 
 .boton:hover {
-  background: linear-gradient(135deg, var(--dorado-brillante), var(--dorado-premium));
-  box-shadow: 0 8px 25px rgba(197, 168, 128, 0.5);
-  transform: translateY(-2px);
-} 
+background: linear-gradient(135deg, var(--dorado-brillante), var(--dorado-premium));
+box-shadow: 0 8px 25px rgba(197, 168, 128, 0.5);
+transform: translateY(-2px);
+}
 
 .boton:active {
-  transform: translateY(1px);
-  box-shadow: 0 3px 10px rgba(197, 168, 128, 0.2);
+transform: translateY(1px);
+box-shadow: 0 3px 10px rgba(197, 168, 128, 0.2);
 }
 
+
+@media (max-width: 480px) {
+body {
+padding: 20px 10px;
+}
+
+.titulo {
+font-size: 2.4rem;
+}
+
+.bienvenida {
+font-size: 0.95rem;
+}
+
+.agendamiento {
+padding: 30px 20px;
+}
+}
+
+
+/* Contenedor principal de la notificación profesional */
 #notificacion {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  opacity: 0;
-  visibility: hidden;
-  background-color: #2ecc71;
-  color: white;
-  padding: 24px 35px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  font-family: 'Poppins', sans-serif;
-  z-index: 99999;
-  text-align: center;
-  max-width: 90%;
-  width: 450px;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-} 
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%) scale(0.8);
+opacity: 0;
+visibility: hidden;
+background-color: #2ecc71;
+color: white;
+padding: 24px 35px;
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+font-family: 'Poppins', sans-serif;
+z-index: 99999;
+text-align: center;
+max-width: 90%;
+width: 450px;
+transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
 #notificacion.mostrar {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-} 
-
-.notificacion-contenido {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-} 
-
-.icono-exito {
-  font-size: 32px;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} 
-
-#notificacion-mensaje {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
+opacity: 1;
+visibility: visible;
+transform: translate(-50%, -50%) scale(1);
 }
 
+.notificacion-contenido {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 16px;
+}
+
+.icono-exito {
+font-size: 32px;
+font-weight: bold;
+background: rgba(255, 255, 255, 0.25);
+border-radius: 50%;
+width: 60px;
+height: 60px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#notificacion-mensaje {
+margin: 0;
+font-size: 16px;
+font-weight: 400;
+line-height: 1.6;
+}
+
+
+/* Botón de WhatsApp dentro de la notificación /
 .boton-whatsapp-aviso {
-  display: inline-block;
-  margin-top: 15px;
-  background-color: #ffffff;
-  color: #2ecc71 !important;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-} 
+display: inline-block;
+margin-top: 15px;
+background-color: #ffffff;
+color: #2ecc71 !important;
+/ Texto verde */
+padding: 10px 20px;
+border-radius: 6px;
+text-decoration: none;
+font-weight: 600;
+font-size: 14px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
 .boton-whatsapp-aviso:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+transform: translateY(-2px);
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+@keyframes lucesBarberia {
+0% {
+background-position: 0% 50%;
+}
+
+50% {
+background-position: 100% 50%;
+}
+
+100% {
+background-position: 0% 50%;
+}
+}
+
+
+.agendamiento h2,
+.campo,
+.boton {
+transition: opacity 0.15s ease-out, visibility 0.15s ease-out;
 }
 
 .footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  background-color: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-} 
+text-align: center;
+padding: 20px;
+margin-top: 40px;
+background-color: transparent;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 .footer p {
-  color: #888888;
-  font-size: 13px;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
+color: #888888;
+font-size: 13px;
+font-family: 'Poppins', sans-serif;
+margin: 0;
 }
+
+
 
 #contenedor-foto-barbero {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  transition: all 0.3s ease;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
+display: flex;
+justify-content: center;
+margin-top: 15px;
+margin-bottom: 15px;
+transition: all 0.3s ease;
+opacity: 0;
+height: 0;
+overflow: hidden;
 }
+
 
 #contenedor-foto-barbero.mostrar-foto {
-  opacity: 1;
-  height: 120px;
-} 
-
-#foto-barbero {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
-  object-fit: cover;
-  object-position: center;
-} 
-
-#notificacion.alerta-roja {
-  background-color: #e74c3c;
+opacity: 1;
+height: 120px;
 }
 
-.header > * {
-  max-width: 100%;
-} 
+/* para que la foto no se distorsione */
+#foto-barbero {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+border: 3px solid #ffffff;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
-/* ===== MEDIA QUERIES ===== */
+/* Recorta la imagen proporcionalmente para que NO se estire /
+object-fit: cover;
+object-position: center;
+/ Centra el rostro del barbero */
+}
+
+#notificacion.alerta-roja {
+background-color: #e74c3c;
+}
+
+
+/* ===== FIX: evitar desbordamiento del header y título ===== */
+
+.header {
+flex-wrap: wrap;
+}
+
+/* Contención total del título */
+.titulo {
+width: 100%;
+max-width: 100%;
+box-sizing: border-box;
+
+/* evita que el texto se salga del contenedor */
+white-space: normal;
+overflow-wrap: anywhere;
+word-break: break-word;
+
+/* seguridad extra */
+padding: 0 10px;
+}
+
+/* Evita que elementos internos del header empujen o desborden */
+.header > * {
+max-width: 100%;
+}
+
+/* Ajuste de seguridad para pantallas pequeñas sin cambiar diseño */
 @media (max-width: 480px) {
-  .header {
-    min-height: 150px;
-    padding: 10px;
-  } 
-  .titulo {
-    font-size: 2.4rem;
-    line-height: 1.1;
-    padding: 5px 0;
-  } 
-  .bienvenida {
-    margin-top: 5px;
-    font-size: 0.95rem;
-  }
-  body {
-    padding: 20px 10px;
-  } 
-  .agendamiento {
-    padding: 30px 20px;
-    max-height: calc(100vh - 210px); 
-  }
+.titulo {
+line-height: 1.1;
+}
 }
