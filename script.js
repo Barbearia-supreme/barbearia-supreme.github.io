@@ -58,8 +58,6 @@ btnWhatsapp.addEventListener('click', () => {
     setTimeout(ocultarAvisoExito, 1000);
 });
 
-// Efecto visual al hacer scroll
-window.addEventListener('scroll', efectoScroll);
 
 
 // ======================================================
