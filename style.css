@@ -510,3 +510,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         line-height: 1.1;
     }
 }
+
+
+
+
+
+/* ================================ esta linea puede ser borrada*****
+   FIX PROFESIONAL FONDO (ZOOM / SCROLL / MOVIMIENTO EN MÓVILES)
+   ================================ */
+
+/* Evita bugs de background-fixed en móviles */
+@media (max-width: 1024px) {
+    body {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Mejora estabilidad visual en todos los dispositivos */
+html, body {
+    height: 100%;
+}
+
+/* Estabiliza renderizado del fondo (evita “zoom raro” y parpadeo) */
+body {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
