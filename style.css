@@ -17,9 +17,7 @@
 body {
 
     font-family: 'Poppins', sans-serif;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.384), rgba(10, 10, 10, 0.82)),
-        url('assets/fondo-barberia2.jpg');
-
+   
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -52,7 +50,7 @@ body {
     height: 100vh; 
     
     background-image: linear-gradient(rgba(0, 0, 0, 0.21), rgba(10, 10, 10, 0.82)),
-        url('assets/fondo-barberia.jpg');
+        url('assets/fondo-barberia2.jpg');
 
     background-size: cover;
     background-position: center center;
@@ -61,7 +59,8 @@ body {
     z-index: -1;
     pointer-events: none;
     background-color: #121212;
-/* TRUCO CLAVE: Fuerza al celular a renderizar el fondo usando la tarjeta gráfica (GPU). 
+
+    /* TRUCO CLAVE: Fuerza al celular a renderizar el fondo usando la tarjeta gráfica (GPU). 
        Esto congela la imagen y evita que el scroll recalcule el tamaño de la foto */
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
@@ -69,7 +68,6 @@ body {
     /* Evita parpadeos visuales durante el desplazamiento */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    
 }
 
 
@@ -84,12 +82,12 @@ html {
     left: 0;
     z-index: 10;
     padding: 8px 15px;
-    background: rgba(18, 17, 17, 0.756);
-    border-bottom: 1px solid rgba(239, 217, 16, 0.21);
+    background: rgba(18, 17, 17, 0.12);
+    border-bottom: 1px solid rgba(239, 217, 16, 0.228);
     position: fixed;
     width: 100%;
     min-height: 175px;
-    background-color: rgba(0, 0, 0, 0.388);
+    background-color: rgba(0, 0, 0, 0.699);
 
     /* RESPONSIVO */
     display: flex;

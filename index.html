@@ -1,187 +1,288 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barbearia Nilson</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Nilson</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+    <!-- Fonte Profissional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    body {
-      min-height: 100vh;
-      color: #fff;
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      /* 🔥 FONDO */
-      background: url("assets/fondo-barberia1.jpg") no-repeat center center/cover;
-      position: relative;
-    }
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: url("assets/fondo-barberia1.jpg") no-repeat center center;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
 
-    /* 🔥 capa oscura encima del fondo */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 0;
-    }
+        /* Overlay elegante */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.60)
+                );
+            z-index: 0;
+        }
 
-    header,
-    .container,
-    footer {
-      position: relative;
-      z-index: 1;
-    }
+        header,
+        main,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
 
-    header {
-       
-      padding: 28px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 25px 20px;
+        }
 
-    header h1 {
-      color: #d4af37;
-      font-size: 28px;
-      letter-spacing: 2px;
-        background: linear-gradient(
-    135deg, 
-    #b38728 0%, 
-    #fbf5b7 25%, 
-    #daa520 50%, 
-    #fbf5b7 75%, 
-    #aa771c 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
-  /* Sombra 3D profunda y brillo elegante */
-  text-shadow: 
-    0px 4px 10px rgba(0, 0, 0, 0.9),
-    0px 0px 25px rgba(218, 165, 32, 0.2);
-  
-  /* Animación sutil de brillo continuo */
-  background-size: 200% auto;
-  animation: brilloMetalico 4s linear infinite;
-}
+        header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: 2px;
 
-/* Animación para el reflejo brillante */
-@keyframes brilloMetalico {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-    }
+            background: linear-gradient(
+                135deg,
+                #b38728 0%,
+                #fbf5b7 25%,
+                #daa520 50%,
+                #fbf5b7 75%,
+                #aa771c 100%
+            );
 
-    header p {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #ccc;
-     
-    }
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
 
-    .container {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
+            background-size: 200% auto;
+            animation: brilhoMetalico 5s linear infinite;
 
-    .container h2 {
-      font-size: 26px;
-      margin-bottom: 70px;
-      
-    }
+            text-shadow:
+                0 4px 10px rgba(0, 0, 0, .8),
+                0 0 25px rgba(218, 165, 32, .25);
+        }
 
-    .container p {
-      max-width: 600px;
-      color: #ddddddd4;
-      margin-bottom: 70px;
-      line-height: 1.6;
-      
-    }
+        @keyframes brilhoMetalico {
+            0% {
+                background-position: 0% 50%;
+            }
 
-    .btn {
-      background: #d4af37;
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 5px;
-      font-size: 16px;
-      text-decoration: none;
-      transition: 0.3s;
-      display: inline-block;
-    }
+            50% {
+                background-position: 100% 50%;
+            }
 
-    .btn:hover {
-      background: #b8912e;
-      transform: scale(1.05);
-    }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-    footer {
-    
-      text-align: center;
-      padding: 15px;
-      font-size: 12px;
-      color: #aaa;
-    }
+        header p {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #e4e4e4;
+            font-weight: 300;
+        }
 
-    /* 📱 RESPONSIVO */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 22px;
-      }
+        /* CONTEÚDO PRINCIPAL */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-      .container h2 {
-        font-size: 22px;
-      }
+        .card-apresentacao {
+            width: 100%;
+            max-width: 850px;
 
-      .container p {
-        font-size: 13px;
-      }
+            text-align: center;
 
-      .btn {
-        width: 70%;
-        text-align: center;
-      }
-    }
-  </style>
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 20px;
+
+            text-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.9);
+
+            animation: fadeUp 1s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* TÍTULO PRINCIPAL */
+        .card-apresentacao h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            max-width: 700px;
+        }
+
+        /* TEXTO */
+        .card-apresentacao p {
+            max-width: 650px;
+
+            font-size: 1.05rem;
+            font-weight: 300;
+
+            line-height: 1.9;
+
+            color: rgba(255, 255, 255, 0.92);
+
+            margin-bottom: 40px;
+        }
+
+        /* BOTÃO */
+        .btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: linear-gradient(
+                135deg,
+                #d4af37,
+                #f7d774
+            );
+
+            color: #000;
+
+            padding: 16px 38px;
+
+            border-radius: 8px;
+
+            font-size: 1rem;
+            font-weight: 600;
+
+            transition: .3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 30px rgba(212, 175, 55, .45);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #d0d0d0;
+            font-size: .9rem;
+            font-weight: 300;
+        }
+
+        /* TABLETS */
+        @media (max-width: 768px) {
+
+            header {
+                padding: 20px 15px;
+            }
+
+            .card-apresentacao h2 {
+                font-size: 2.3rem;
+            }
+
+            .card-apresentacao p {
+                font-size: .95rem;
+                line-height: 1.8;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        /* CELULARES */
+        @media (max-width: 480px) {
+
+            .card-apresentacao h2 {
+                font-size: 1.9rem;
+            }
+
+            .card-apresentacao p {
+                font-size: .92rem;
+            }
+
+            header p {
+                font-size: .9rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>Barbearia Nilson</h1>
-    <p>Agende seu horário em poucos cliques</p>
-  </header>
+    <!-- HEADER -->
+    <header>
+        <h1>Barbearia Nilson</h1>
+        <p>Agende seu horário em poucos cliques</p>
+    </header>
 
-  <!-- CENTRO -->
-  <div class="container">
-    <h2>Seu estilo começa aqui</h2>
-    <p>
-      Na Barbearia Nilson você encontra cortes modernos, atendimento de qualidade e um ambiente profissional.
-      Escolha seu horário e garanta seu atendimento sem complicação.
-    </p>
+    <!-- APRESENTAÇÃO -->
+    <main>
 
-    <a href="index-agendamento.html" class="btn">Agendar horário</a>
-  </div>
+        <div class="card-apresentacao">
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Barbearia Nilson, todos os dereitos reservados.
-  </footer>
+            <h2>Tradição, estilo e personalidade</h2>
+
+            <p>
+                Na Barbearia Nilson você encontra cortes modernos,
+                atendimento de qualidade e um ambiente profissional.
+                Trabalhamos para oferecer a melhor experiência,
+                valorizando seu estilo, sua imagem e seu tempo.
+            </p>
+
+            <a href="index-agendamento.html" class="btn">
+                Agendar horário
+            </a>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Barbearia Nilson. Todos os direitos reservados.
+    </footer>
 
 </body>
 
