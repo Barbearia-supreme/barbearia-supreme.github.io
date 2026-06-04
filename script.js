@@ -8,8 +8,8 @@ const bloqueMinimo = 15; // División de horarios en minutos
 
 // Fotos de los barberos
 const fotosBarberos = {
-    Maduro: "assets/lula.png",
-    Lula: "assets/maduro.png"
+   Carlos: "assets/carlos.jpg",
+    Miguel: "assets/miguel.jpg"
 };
 
 // Array que se sincroniza automáticamente con Firebase
