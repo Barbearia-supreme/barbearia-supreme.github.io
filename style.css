@@ -24,7 +24,7 @@ body {
     background-repeat: no-repeat;
 
     overscroll-behavior: none;
-    background-color: #121212;
+    background-color:#1c1c1e ;
 
     color: var(--blanco-puro);
     font-family: var(--fuente-elegante);
