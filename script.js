@@ -486,7 +486,7 @@ async function registrarCita(e) {
             formatearFechaAmigable(fecha);
 
         const textoMensaje = `
- Olá, Barbearia Bunny!
+ Barbearia Nilson!
 
 Gostaria de confirmar meu agendamento:
 

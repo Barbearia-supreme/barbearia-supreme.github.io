@@ -25,32 +25,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. FUNCIÓN PARA PINTAR LOS REGISTROS EN LA TABLA HTML
+       // 2. FUNCIÓN PARA PINTAR LOS REGISTROS EN LA TABLA HTML (CON ORDEN CRONOLÓGICO)
     function mostrarCitasEnTabla(citasFiltradas) {
         listaCitasBody.innerHTML = ''; // Limpiar la tabla visual
         contadorCitas.textContent = citasFiltradas.length; // Actualizar métrica total
 
         if (citasFiltradas.length === 0) {
-            listaCitasBody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#888;">No hay citas registradas para este criterio.</td></tr>`;
+            listaCitasBody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#888;">Nenhum agendamento encontrado.</td></tr>`;
             return;
         }
 
+        // 🔥 NUEVO: Ordenar las citas por la hora de 'inicio' antes de pintarlas
+        citasFiltradas.sort((a, b) => {
+            // Aseguramos que existan los campos de inicio para evitar errores de lectura
+            const horaA = a.inicio || "00:00";
+            const horaB = b.inicio || "00:00";
+            
+            // Compara "08:15" contra "10:00" y los ordena de menor a mayor perfectamente
+            return horaA.localeCompare(horaB);
+        });
+
+        // El resto de tu función original sigue exactamente igual
         citasFiltradas.forEach((cita) => {
             const fila = document.createElement('tr');
 
             fila.innerHTML = `
-               <td><strong>${cita.cliente}</strong></td>
-
-<td>${cita.telefono}</td>
-
-<td>${cita.inicio} hs - ${cita.fin} hs</td>
-
-<td>${cita.fecha}</td>
-
-<td>${cita.barbero}</td>
-
-<td>${cita.servicio || 'No especificado'}</td>
-
-<td>
+                <td><strong>${cita.cliente}</strong></td>
+                <td>${cita.telefono}</td>
+                <td>${cita.inicio} hs - ${cita.fin} hs</td>
+                <td>${cita.fecha}</td>
+                <td>${cita.barbero}</td>
+                <td>${cita.servicio || 'No especificado'}</td>
+                <td>
                     <button class="btn-eliminar" data-id="${cita.id}">Cancelar ❌</button>
                 </td>
             `;
@@ -61,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Activar los botones de eliminación que se acaban de crear
         asignarEventosEliminar();
     }
+
 
     // 3. LOGICA PARA FILTRAR POR BARBERO DESDE EL SELECTOR
     filtroBarbero.addEventListener('change', (e) => {

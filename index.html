@@ -231,13 +231,57 @@
         }
 
         /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #d0d0d0;
-            font-size: .9rem;
-            font-weight: 300;
-        }
+        
+           /* Contenedor principal del footer */
+.footer-barberia {
+  background-color: #1a1a1ac0; /* Fondo oscuro elegante */
+  color: #ffffff; /* Texto blanco */
+  padding: 30px 20px; /* Espacio interno arriba/abajo y lados */
+  text-align: center; /* Centra todo el contenido */
+  font-family: 'Arial', sans-serif; /* Tipografía limpia */
+  border-top: 1px solid #d4af377a; /* Línea dorada decorativa arriba */
+}
+
+/* Caja que centra y limita el ancho en pantallas grandes */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* Coloca un texto sobre el otro */
+  gap: 15px; /* Espacio de separación entre los dos textos */
+}
+
+/* Estilo para el texto de la ubicación */
+.footer-location {
+  font-size: 1rem;
+  margin: 0;
+  color: #cccccc; /* Gris claro para que no compita con el enlace */
+}
+
+/* Estilo específico para el enlace de Google Maps */
+.footer-location a {
+  color: #d4af37; /* Color dorado para el enlace (estilo barbería) */
+  text-decoration: none; /* Quita el subrayado feo por defecto */
+  font-weight: bold;
+  transition: color 0.3s ease; /* Efecto suave al pasar el cursor */
+}
+
+/* Efecto cuando el cliente pasa el mouse por encima del enlace */
+.footer-location a:hover {
+  color: #ffffff; /* Cambia a blanco brillante */
+  text-decoration: underline; /* Aparece un subrayado elegante */
+}
+
+/* Estilo para los derechos reservados */
+.footer-rights {
+  font-size: 0.85rem; /* Letra un poco más pequeña */
+  color: #777777; /* Gris oscuro discreto */
+  margin: 0;
+  border-top: 1px solid #333333; /* Línea sutil de división */
+  padding-top: 15px; /* Espacio arriba de la línea */
+}
+
+        
 
         /* TABLETS */
         @media (max-width: 768px) {
@@ -315,9 +359,22 @@
     </main>
 
     <!-- FOOTER -->
-    <footer>
-        © 2026 Barbearia Nilson. Todos os direitos reservados.
-    </footer>
+   <footer class="footer-barberia">
+  <div class="footer-content">
+    <!-- Bloque de Ubicación -->
+    <p class="footer-location">
+     Estamos localizados na : 
+      <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+        R. Giácomo J Nechio, 174 - Jardim Lago Azul
+      </a>
+    </p>
+    
+    <!-- Bloque de Derechos Reservados -->
+    <p class="footer-rights">
+      &copy; 2026 Barbería Nilson. Todos los derechos reservados.
+    </p>
+  </div>
+</footer>
 
 </body>
 
