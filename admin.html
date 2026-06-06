@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin - Barbearia Bunny</title>
 
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="admin-style.css">
@@ -17,16 +16,12 @@
 <body>
 
     <header class="admin-header">
-
-        <h1>Painel de Controle </h1>
-
+        <h1>Painel de Controle</h1>
         <p>Gerenciamento de horários e agenda em tempo real</p>
-
         <button id="logout-btn">Sair</button>
 
         <style>
             #logout-btn {
-
                 background: #ff3b3b;
                 color: white;
                 border: none;
@@ -36,69 +31,56 @@
                 cursor: pointer;
                 transition: 0.3s;
                 font-weight: 600;
-
+                margin-top: 12px;
+                position: relative;
             }
 
             #logout-btn:hover {
-
                 background: #e60000;
                 transform: scale(1.05);
-
-            }
-
-            #logout-btn {
-
-                margin-top: 12px;
-                position: relative;
-
             }
         </style>
-
     </header>
 
     <main class="admin-container">
 
-        <!-- SEÇÃO DE MÉTRICAS -->
+        <!-- SEÇÃO DE MÉTRICAS E FILTROS RÁPIDOS -->
         <section class="metricas">
-
             <div class="tarjeta-metrica">
-
                 <h3>Total de Horários</h3>
-
                 <p id="total-citas">0</p>
-
             </div>
 
             <div class="tarjeta-metrica">
-
                 <h3>Filtrar por Barbeiro</h3>
-
                 <select id="filtro-barbero">
-
-                    <option value="todos">
-                        Todos os profissionais </option>
-
+                    <option value="todos">Todos os profissionais</option>
                     <option value="Carlos">Carlos</option>
-
                     <option value="Miguel">Miguel</option>
-
                 </select>
-
             </div>
 
+            <!-- CONTENEDOR: FILTROS DE FECHAS -->
+            <div class="tarjeta-metrica filtro-fechas-contenedor">
+                <h3>Filtrar por Período</h3>
+                <div class="grupo-botones-fecha">
+                    <button type="button" id="btn-filtro-hoje" class="btn-fecha-rapido activo">Hoje</button>
+                    <button type="button" id="btn-filtro-amanha" class="btn-fecha-rapido">Amanhã</button>
+                    <button type="button" id="btn-filtro-todos" class="btn-fecha-rapido">Todos</button>
+                </div>
+                <div class="input-fecha-buscar">
+                    <label for="buscar-fecha-admin">Ou selecione um dia:</label>
+                    <input type="date" id="buscar-fecha-admin">
+                </div>
+            </div>
         </section>
 
-        <!-- TABELA DE AGENDAMENTOS -->
+        <!-- 🔥 NUEVO: AQUÍ ESTÁ LA TABLA REINTEGRADA QUE HACÍA FALTA -->
         <section class="tabla-contenedor">
-
             <h2>Lista de Agendamentos</h2>
-
             <table class="tabla-citas">
-
                 <thead>
-
                     <tr>
-
                         <th>Cliente</th>
                         <th>Telefone</th>
                         <th>Horário</th>
@@ -106,133 +88,62 @@
                         <th>Barbeiro</th>
                         <th>Serviço</th>
                         <th>Ação</th>
-
                     </tr>
-
                 </thead>
-
                 <tbody id="lista-citas-body">
-
                     <!-- Dados do Firebase aparecerão aqui -->
-
                 </tbody>
-
             </table>
-
         </section>
 
     </main>
 
-
     <!-- ========================================== -->
     <!--      INTEGRAÇÃO COM FIREBASE               -->
     <!-- ========================================== -->
-
     <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, doc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // CORE FIREBASE
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-        // FIRESTORE
-        import {
-
-            getFirestore,
-            collection,
-            onSnapshot,
-            doc,
-            deleteDoc,
-            query,
-            orderBy
-
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-        // AUTH
-        import {
-
-            getAuth,
-            onAuthStateChanged,
-            signOut
-
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-        // CONFIG FIREBASE
         const firebaseConfig = {
-
             apiKey: "AIzaSyBUfamPSEoP3qIy_MUifGR1X2ZBtyqz_tQ",
-
             authDomain: "barberia-bunny-c0486.firebaseapp.com",
-
             projectId: "barberia-bunny-c0486",
-
             storageBucket: "barberia-bunny-c0486.firebasestorage.app",
-
             messagingSenderId: "240230509007",
-
             appId: "1:240230509007:web:82c6e08b72276ce35d4aba"
-
         };
 
-
-        // INICIALIZAR SERVIÇOS
         const app = initializeApp(firebaseConfig);
-
         const db = getFirestore(app);
-
         const auth = getAuth(app);
 
-
-        // DISPONIBILIZAR GLOBALMENTE
         window.db = db;
-
         window.collection = collection;
-
         window.onSnapshot = onSnapshot;
-
         window.doc = doc;
-
         window.deleteDoc = deleteDoc;
-
         window.query = query;
-
         window.orderBy = orderBy;
 
-
-        // PROTEGER PAINEL
         onAuthStateChanged(auth, (user) => {
-
             if (!user) {
-
                 window.location.href = "login.html";
-
             }
-
         });
 
-
-        // LOGOUT
-        const logoutBtn =
-            document.getElementById('logout-btn');
-
-
-        logoutBtn.addEventListener('click', async () => {
-
-            await signOut(auth);
-
-            window.location.href = "login.html";
-
-        });
-
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                await signOut(auth);
+                window.location.href = "login.html";
+            });
+        }
     </script>
-
 
     <!-- SCRIPT DO ADMIN -->
     <script type="module" src="admin-script.js"></script>
 
 </body>
-
 </html>
