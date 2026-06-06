@@ -280,10 +280,33 @@ select:focus {
     color: #888888;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1) sepia(50%) saturate(1000%) hue-rotate(10deg);
-    cursor: pointer;
+/* 1. Corrección del contenedor principal del input */
+input[type="date"] {
+  /* Elimina el diseño nativo intrusivo de Apple */
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* Evita que el padding interno expanda el elemento hacia la derecha */
+  box-sizing: border-box;
+  
+  /* Asegura que no supere los límites del contenedor del formulario */
+  width: 100%;
+  max-width: 100%;
+  
+  /* Corrige alturas e imprecisiones visuales de iOS */
+  min-height: 2.5rem; 
 }
+
+/* 2. Tu código actual optimizado para el icono */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) sepia(50%) saturate(1000%) hue-rotate(10deg);
+  cursor: pointer;
+  
+  /* Fuerza a WebKit a respetar el tamaño del icono y que no empuje el input */
+  position: relative;
+  right: 0;
+}
+
 
 .boton {
     background: linear-gradient(135deg, var(--dorado-premium), #a88d65);
