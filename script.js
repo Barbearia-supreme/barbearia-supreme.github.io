@@ -1,18 +1,18 @@
-// ======================================================
-// CONFIGURACIÓN GENERAL
-// ======================================================
+ // CONFIGURACIÓN GENERAL             
+    // ====================================================== 
 
-const horaApertura = "08:00";
-const horaCierre = "20:00";
-const bloqueMinimo = 15; // División de horarios en minutos
+     const horaApertura = "08:00";
+    const horaCierre = "20:00";
+    const bloqueMinimo = 15; // División de horarios en minutos
 
-// Fotos de los barberos
-const fotosBarberos = {
+    // Fotos de los barberos
+    const fotosBarberos = {
    Carlos: "assets/carlos.jpg",
     Miguel: "assets/miguel.jpg"
-};
+    };
 
-// Array que se sincroniza automáticamente con Firebase
+    // Array que se sincroniza automáticamente con Firebase  
+
 let citasReservadas = [];
 
 
@@ -57,7 +57,7 @@ formulario.addEventListener('submit', registrarCita);
 
 // Cerrar notificación después de abrir WhatsApp
 btnWhatsapp.addEventListener('click', () => {
-    setTimeout(ocultarAvisoExito, 1000);
+    setTimeout(ocultarAvisoExito, 9000);
 });
 
 
@@ -137,27 +137,29 @@ function obtenerFechaHoy() {
 }
 
 
-// Convertir fecha en formato amigable
+// Convertir fecha en formato amigable (Resultado: 06-jun-2026)
 function formatearFechaAmigable(fechaTexto) {
-
     if (!fechaTexto) return "";
 
+    // Evita problemas de zona horaria forzando la hora a medianoche
     const fechaObjeto = new Date(fechaTexto + 'T00:00:00');
 
     const opciones = {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
+        day: '2-digit',
+        month: 'short', // Trae el mes abreviado (ej: "jun.")
+        year: 'numeric'
     };
 
-    let fechaFormateada = new Intl.DateTimeFormat('pt-BR', opciones)
-        .format(fechaObjeto);
+    // Genera el texto inicial usando el idioma de la app (pt-BR)
+    let fechaFormateada = new Intl.DateTimeFormat('pt-BR', opciones).format(fechaObjeto);
+    
+    // Limpiamos el texto: quitamos los puntos que pone el idioma y cambiamos los espacios por guiones
+    fechaFormateada = fechaFormateada.replace(/\./g, '').replace(/ de /g, '-').replace(/ /g, '-');
 
-    return fechaFormateada.charAt(0).toUpperCase() +
-        fechaFormateada.slice(1);
-
-
+    // Lo pasamos todo a minúsculas para cumplir con el formato exacto que buscas
+    return fechaFormateada.toLowerCase();
 }
+
 
 
 // ======================================================
@@ -187,11 +189,6 @@ function mostrarFotoBarbero() {
 
 }
 
-
-// ======================================================
-// CALCULAR HORARIOS DISPONIBLES
-// ======================================================
-
 function calcularHorariosDisponibles() {
 
     const servicio = selectServicio.value;
@@ -207,6 +204,8 @@ function calcularHorariosDisponibles() {
         return;
 
     }
+
+
 
     // ==================================================
     // VALIDAR DOMINGOS
@@ -243,7 +242,7 @@ function calcularHorariosDisponibles() {
         inputFecha.value = "";
 
         selectHorario.innerHTML =
-            '<option value="">Selecciona un servicio y fecha primero</option>';
+            '<option value="">Selecione um serviço e uma data primeiro</option>';
 
         return;
 
@@ -283,6 +282,7 @@ function calcularHorariosDisponibles() {
         }
 
     }
+
 
     // ==================================================
     // RECORRER HORARIOS DISPONIBLES
@@ -334,6 +334,7 @@ function calcularHorariosDisponibles() {
             }
 
         }
+        
 
       
         
@@ -351,10 +352,10 @@ function calcularHorariosDisponibles() {
 
         }
 
+    
     }
 
 }
-
 
 // ======================================================
 // REGISTRAR CITA
@@ -385,6 +386,7 @@ async function registrarCita(e) {
 
     }
 
+
     const horarioSeleccionado = selectHorario.value;
 
     if (!horarioSeleccionado) {
@@ -394,6 +396,7 @@ async function registrarCita(e) {
         return;
 
     }
+
 
     // ==================================================
     // DATOS DEL SERVICIO
