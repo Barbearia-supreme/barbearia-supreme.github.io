@@ -213,7 +213,7 @@ html {
   will-change: transform, opacity, filter;
   transform: translate3d(0, 0, 0);
 
-   border: 1px solid rgba(78, 68, 12, 0.582);
+   border: 1px solid rgba(48, 47, 47, 0.267);
 
    box-sizing: border-box;
   width: 100%;
