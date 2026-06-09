@@ -576,7 +576,7 @@ function mostrarAvisoExito(mensaje, urlWhatsApp) {
 
         ocultarAvisoExito();
 
-    }, 8000);
+    }, 10000);
 
 }
 
