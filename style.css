@@ -1,8 +1,8 @@
 :root {
-    --dorado-premium: #c5a880;
-    --dorado-brillante: #e5c158;
-    --blanco-puro: #ffffff;
-    --texto-secundario: #cccccc;
+    --dorado-premium: #dd7741cb;
+    --dorado-brillante: #d6bb51;
+    --blanco-puro: #dad0cfec;
+    --texto-secundario: #676767b5;
     --fuente-elegante: 'Poppins', sans-serif;
 }
 
@@ -83,11 +83,11 @@ html {
     z-index: 10;
     padding: 8px 15px;
     background: rgb(18, 17, 17);
-    border-bottom: 1px solid rgba(228, 177, 9, 0.356);
+    border-bottom: 1px solid rgba(192, 10, 10, 0.553);
     position: fixed;
     width: 100%;
     min-height: 175px;
-    background-color: rgba(3, 0, 0, 0.95);
+    background-color: rgb(3, 0, 0);
 
     /* RESPONSIVO */
     display: flex;
