@@ -40,13 +40,11 @@ body {
 
 .fondo-barberia {
      position: fixed;
-    /* Fijamos los 4 lados para congelar el tamaño de forma física */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     width: 100%;
-    /* Usamos una altura dinámica que bloquea el redimensionamiento */
     height: 100vh; 
     
     background-image: linear-gradient(rgba(0, 0, 0, 0.21), rgba(10, 10, 10, 0.82)),
@@ -60,12 +58,9 @@ body {
     pointer-events: none;
     background-color: #121212;
 
-    /* TRUCO CLAVE: Fuerza al celular a renderizar el fondo usando la tarjeta gráfica (GPU). 
-       Esto congela la imagen y evita que el scroll recalcule el tamaño de la foto */
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     
-    /* Evita parpadeos visuales durante el desplazamiento */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -88,21 +83,15 @@ html {
     width: 100%;
     min-height: 175px;
     background-color: rgb(3, 0, 0);
-
-    /* RESPONSIVO */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* evita que el contenido se salga */
     overflow: hidden;
     box-sizing: border-box;
 }
 
 .titulo {
-
-  /* Tipografía y alineación */
   font-family: 'Playfair Display', 'Cinzel', 'Georgia', serif;
   font-size: 4rem;
   font-weight: 800;
@@ -111,23 +100,22 @@ html {
   text-align: center;
   margin: 30px 8;
   
-  /* Efecto de color dorado metálico brillante */
  background: linear-gradient(
     135deg, 
-    #b70707 0%,    /* Rojo Supreme */
-    #653939 50%,   /* Destello de luz blanca en el centro */
-    #4c0a0aee 100%   /* Rojo oscuro */
+    #b70707 0%,    
+    #653939 50%,   
+    #4c0a0aee 100%   
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  /* Efecto de iluminación Neón */
+  
   filter: drop-shadow(1px 7px 2px rgb(92, 32, 32)) 
           drop-shadow(1px 10px 30px rgb(175, 11, 11));
   
   background-size: 200% auto;
-  animation: brilloMetalico 3s linear infinite; /* Animación ligeramente más rápida */
+  animation: brilloMetalico 3s linear infinite; 
 }
 
 @keyframes brilloMetalico {
@@ -138,18 +126,14 @@ html {
 
 .bienvenida {
     color: rgb(219, 218, 218);
-
-    /* RESPONSIVO */
     font-size: clamp(13px, 2vw, 17px);
-
     letter-spacing: 1px;
     text-shadow: 1px 1px 5px rgba(61, 63, 45, 0.858);
-
-    /* evita desbordes */
     text-align: center;
     max-width: 90%;
     line-height: 1.4;
     word-wrap: break-word;
+
      background: linear-gradient(
      135deg,
   #e51a0b 0%,
@@ -160,17 +144,17 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  /* Sombra 3D profunda y brillo elegante */
+  
   text-shadow: 
     6px 5px 20px rgba(53, 48, 48, 0.89),
     0px 0px 0px rgba(209, 203, 203, 0.986);
   
-  /* Animación sutil de brillo continuo */
+
   background-size: 200% auto;
   animation: brilloMetalico 3s linear infinite;
 }
 
-/* CELULARES PEQUEÑOS */
+
 @media (max-width: 480px) {
     .header {
         min-height: 150px;
@@ -194,17 +178,14 @@ html {
 }
 
 .agendamiento {
-    
-
-background-color: rgba(14, 13, 13, 0.623); /* 1. Fondo semi-transparente obligatorio */
+background-color: rgba(14, 13, 13, 0.623); 
   
-  /* 2. Soporte oficial para Safari en iPhone */
+  /* Soporte oficial para Safari en iPhone */
   -webkit-backdrop-filter: blur(1.5px) saturate(140%); 
   
-  /* 3. Soporte para Android y otros navegadores */
   backdrop-filter: blur(0px) saturate(140%);
   
-  /* 4. Aceleración por Hardware para evitar que se vea "envasado" o lento en iOS */
+  /* Aceleración por Hardware para evitar que se vea "envasado" o lento en iOS */
   will-change: transform, opacity, filter;
   transform: translate3d(0, 0, 0);
 
@@ -257,12 +238,11 @@ background-color: rgba(14, 13, 13, 0.623); /* 1. Fondo semi-transparente obligat
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
-
-/* Campos de Formulario Minimalistas */
 input[type="text"],
 input[type="tel"],
 input[type="date"],
 select {
+
     background-color: rgba(26, 25, 25, 0.411);
     color: var(--blanco-puro);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -286,29 +266,18 @@ select:focus {
     color: #888888;
 }
 
-/* 1. Corrección del contenedor principal del input */
 input[type="date"] {
-  /* Elimina el diseño nativo intrusivo de Apple */
+  
   -webkit-appearance: none;
   appearance: none;
-
-  /* Evita que el padding interno expanda el elemento hacia la derecha */
   box-sizing: border-box;
-  
-  /* Asegura que no supere los límites del contenedor del formulario */
   width: 100%;
   max-width: 100%;
-  
-  /* Corrige alturas e imprecisiones visuales de iOS */
   min-height: 2.5rem; 
 }
-
-/* 2. Tu código actual optimizado para el icono */
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1) sepia(50%) saturate(1000%) hue-rotate(10deg);
   cursor: pointer;
-  
-  /* Fuerza a WebKit a respetar el tamaño del icono y que no empuje el input */
   position: relative;
   right: 0;
 }
@@ -362,7 +331,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* Contenedor principal de la notificación profesional */
 #notificacion {
     position: fixed;
     top: 50%;
@@ -416,13 +384,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* Botón de WhatsApp dentro de la notificación */
 .boton-whatsapp-aviso {
     display: inline-block;
     margin-top: 15px;
     background-color: #ffffff;
     color: #2ecc71 !important;
-    /* Texto verde */
     padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
@@ -495,18 +461,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 120px;
 }
 
-/* para que la foto no se distorsione */
 #foto-barbero {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     border: 1px solid #605d5de9;
     box-shadow: 0 1px 8px rgba(75, 73, 72, 0.895);
-
-    /* Recorta la imagen proporcionalmente para que NO se estire */
     object-fit: cover;
     object-position: center;
-    /* Centra el rostro del barbero */
+    
 }
 
 #notificacion.alerta-roja {
@@ -514,33 +477,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* ===== FIX: evitar desbordamiento del header y título ===== */
 
 .header {
     flex-wrap: wrap;
 }
 
-/* Contención total del título */
 .titulo {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-
-    /* evita que el texto se salga del contenedor */
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
-
-    /* seguridad extra */
     padding: 0 10px;
 }
 
-/* Evita que elementos internos del header empujen o desborden */
 .header > * {
     max-width: 100%;
 }
 
-/* Ajuste de seguridad para pantallas pequeñas sin cambiar diseño */
+
 @media (max-width: 480px) {
     .titulo {
         line-height: 1.1;

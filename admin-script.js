@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnTodos = document.getElementById('btn-filtro-todos');
     const inputBuscarFecha = document.getElementById('buscar-fecha-admin');
 
-    // CONVERTIR FORMATO DE FECHA A: "06-jun-2026"
+    
     function formatearFechaTabla(fechaTexto) {
         if (!fechaTexto || !fechaTexto.includes('-')) return fechaTexto;
         try {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // OBTENER FECHAS DEL SISTEMA (Formato YYYY-MM-DD)
+    
     function obtenerFechaString(desplazamiento = 0) {
         const d = new Date();
         d.setDate(d.getDate() + desplazamiento);
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${yyyy}-${mm}-${dd}`;
     }
 
-    // 1. CONEXIÓN Y ESCUCHA EN TIEMPO REAL CON FIREBASE
+    // CONEXIÓN Y ESCUCHA EN TIEMPO REAL CON FIREBASE
     if (window.db && window.collection && window.onSnapshot && window.query && window.orderBy) {
         const consultaOrdenada = window.query(window.collection(window.db, "citas"), window.orderBy("fecha", "asc"));
 
@@ -48,16 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. LOGICA DE FILTRADO COMBINADO (BARBERO + FECHA)
+    
     function aplicarFiltrosCombinados() {
         let registradas = [...todasLasCitas];
 
-        // Filtro de Profesionales
+        
         if (filtroBarberoActual !== "todos") {
             registradas = registradas.filter(cita => cita.barbero === filtroBarberoActual);
         }
 
-        // Filtro de Fechas
+        
         const hoyStr = obtenerFechaString(0);
         const amanhaStr = obtenerFechaString(1);
 
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarCitasEnTabla(registradas);
     }
 
-    // 3. RENDERIZACIÓN DE LAS FILAS EN LA TABLA
+    
     function mostrarCitasEnTabla(citasFiltradas) {
         const listaCitasBodySeguro = document.getElementById('lista-citas-body');
         if (!listaCitasBodySeguro) return;
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         asignarEventosEliminar();
     }
 
-    // ACCIONES DE LOS FILTROS
+    
     if (filtroBarbero) {
         filtroBarbero.addEventListener('change', (e) => {
             filtroBarberoActual = e.target.value;

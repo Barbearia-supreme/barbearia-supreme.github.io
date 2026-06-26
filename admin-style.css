@@ -22,7 +22,7 @@ body {
     padding: 0 20px;
 }
 
-/* Métricas del día */
+
 .metricas {
     display: flex;
     gap: 20px;
@@ -52,7 +52,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Tabla de Citas */
 .tabla-contenedor {
     background-color: #1c1c1cc5;
     padding: 24px;
@@ -86,7 +85,7 @@ body {
     background-color: #252525;
 }
 
-/* Botón de Cancelar Cita */
+
 .btn-eliminar {
     background-color: #e74c3c;
     color: white;
@@ -104,19 +103,13 @@ body {
 }
 
 
-
-                          /* ==============================================
-   AJUSTES RESPONSIVOS PARA CELULARES CORREGIDO
-   ============================================== */
-
 @media (max-width: 768px) {
-    /* Ajustes del contenedor principal */
+    
     .admin-container {
         margin: 15px auto;
         padding: 0 10px;
     }
 
-    /* Reducir encabezado */
     .admin-header {
         padding: 20px 15px;
     }
@@ -124,53 +117,40 @@ body {
         font-size: 22px;
     }
 
-    /* Tarjetas de métricas una debajo de otra */
     .metricas {
         flex-direction: column;
         gap: 15px;
         margin-bottom: 20px;
     }
 
-    /* CONTENEDOR DE LA TABLA: Permite deslizar de lado a lado de forma fluida */
     .tabla-contenedor {
         padding: 12px;
-        overflow-x: auto; /* Activa el desplazamiento horizontal si no cabe */
-        -webkit-overflow-scrolling: touch; /* Suavidad en iPhone/Android */
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
     }
 
-    /* LA TABLA: Forzamos un ancho mínimo para que las columnas no se aplasten */
     .tabla-citas {
         width: 100%;
-        min-width: 500px; /* Evita que las columnas se encojan en pantallas mini */
+        min-width: 500px; 
         border-collapse: collapse;
     }
 
-    /* LAS CELDAS: Ajustes críticos de empaquetado de texto */
     .tabla-citas th, 
     .tabla-citas td {
-        padding: 12px 10px; /* Espaciado interno balanceado */
-        font-size: 13px;    /* Tamaño de letra ligeramente más óptimo para móvil */
-        white-space: nowrap; /* 🔥 EVITA QUE EL TEXTO SE SEPARE EN DOS RENGLONES */
+        padding: 12px 10px; 
+        font-size: 13px;    
+        white-space: nowrap; 
         vertical-align: middle;
     }
     
-    /* Ajuste específico para la columna de horas y fechas */
+    
     .tabla-citas td:nth-child(3),
     .tabla-citas td:nth-child(4) {
-        letter-spacing: -0.3px; /* Junta un poco los números si el espacio es crítico */
+        letter-spacing: -0.3px; 
     }
 }
 
 
-
-
-/*este codigo es de prueba y puede ser eliminado caso un problema*/
-
-
-
-/* ======================================================
-   ESTILOS GENERALES (TEMA OSCURO)
-   ====================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -200,9 +180,7 @@ body {
     font-size: 14px;
 }
 
-/* ======================================================
-   SECCIÓN DE MÉTRICAS Y FILTROS (REDISEÑADO)
-   ====================================================== */
+
 .metricas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -237,7 +215,7 @@ body {
     color: #2ecc71;
 }
 
-/* Selectores del panel */
+
 select, #buscar-fecha-admin {
     width: 100%;
     max-width: 240px;
@@ -255,9 +233,6 @@ select:focus, #buscar-fecha-admin:focus {
     border-color: #2ecc71;
 }
 
-/* ======================================================
-   BOTONES DE FILTRADO DE FECHAS
-   ====================================================== */
 .filtro-fechas-contenedor {
     gap: 12px !important;
 }
@@ -305,9 +280,7 @@ select:focus, #buscar-fecha-admin:focus {
     color: #888888;
 }
 
-/* ======================================================
-   ESTILOS DE LA TABLA
-   ====================================================== */
+
 .tabla-contenedor {
     background-color: #1e1e1e;
     border: 1px solid #2d2d2d;
