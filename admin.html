@@ -17,7 +17,7 @@
 
 
 
-    
+
     <header class="admin-header">
         <h1>Painel de Controle</h1>
         <p>Gerenciamento de horários e agenda em tempo real</p>
@@ -47,7 +47,7 @@
 
     <main class="admin-container">
 
-       
+
         <section class="metricas">
             <div class="tarjeta-metrica">
                 <h3>Total de Horários</h3>
@@ -77,7 +77,7 @@
             </div>
         </section>
 
-        
+
         <section class="tabla-contenedor">
             <h2>Lista de Agendamentos</h2>
             <table class="tabla-citas">
@@ -92,21 +92,21 @@
                         <th>Ação</th>
                     </tr>
                 </thead>
-                 
-                   <tbody id="lista-citas-body">
 
-                    <!-- Dados do Firebase aparecerão aqui -->
+                <tbody id="lista-citas-body">
+
+
 
                 </tbody>
-                
+
             </table>
         </section>
 
     </main>
 
-    <!-- ========================================== -->
-    <!--      INTEGRAÇÃO COM FIREBASE               -->
-    <!-- ========================================== -->
+
+    <!--  INTEGRAÇÃO COM FIREBASE  -->
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, onSnapshot, doc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -148,8 +148,9 @@
         }
     </script>
 
-    <!-- SCRIPT DO ADMIN -->
+
     <script type="module" src="admin-script.js"></script>
 
 </body>
+
 </html>

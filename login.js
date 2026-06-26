@@ -6,7 +6,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-// 🔥 TU CONFIG FIREBASE (la misma que usas en admin)
+
 const firebaseConfig = {
   apiKey: "AIzaSyBUfamPSEoP3qIy_MUifGR1X2ZBtyqz_tQ",
   authDomain: "barberia-bunny-c0486.firebaseapp.com",
@@ -17,12 +17,12 @@ const firebaseConfig = {
 };
 
 
-// INIT FIREBASE
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-// BOTÓN LOGIN
+
 const btnLogin = document.getElementById('btnLogin');
 
 btnLogin.addEventListener('click', async () => {
@@ -36,7 +36,7 @@ btnLogin.addEventListener('click', async () => {
 
     alert("Login correcto ✔");
 
-    // ir al panel admin
+  
     window.location.href = "admin.html";
 
   } catch (error) {

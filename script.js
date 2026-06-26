@@ -1,11 +1,10 @@
- // CONFIGURACIÓN GENERAL             
-    // ====================================================== 
+
 
      const horaApertura = "08:00";
     const horaCierre = "20:00";
-    const bloqueMinimo = 15; // División de horarios en minutos
+    const bloqueMinimo = 15; 
 
-    // Fotos de los barberos
+    
     const fotosBarberos = {
    Carlos: "assets/carlos.jpg",
     Miguel: "assets/miguel.jpg"
@@ -15,12 +14,6 @@
 
 let citasReservadas = [];
 
-
-
-
-// ======================================================
-// ELEMENTOS DEL DOM
-// ======================================================
 
 const formulario = document.getElementById('formulario');
 
@@ -40,31 +33,20 @@ const textoNotificacion = document.getElementById('notificacion-mensaje');
 const btnWhatsapp = document.getElementById('btn-whatsapp-confirmar');
 
 
-// ======================================================
-// EVENTOS
-// ======================================================
-
 // Recalcular horarios automáticamente
 selectServicio.addEventListener('change', calcularHorariosDisponibles);
 selectBarbero.addEventListener('change', calcularHorariosDisponibles);
 inputFecha.addEventListener('change', calcularHorariosDisponibles);
-
-// Mostrar foto del barbero
 selectBarbero.addEventListener('change', mostrarFotoBarbero);
-
-// Enviar formulario
 formulario.addEventListener('submit', registrarCita);
 
-// Cerrar notificación después de abrir WhatsApp
 btnWhatsapp.addEventListener('click', () => {
     setTimeout(ocultarAvisoExito, 9000);
 });
 
 
-
-// ======================================================
 // FIREBASE - SINCRONIZACIÓN EN TIEMPO REAL
-// ======================================================
+
 
 if (window.onSnapshot && window.collection && window.db) {
 
@@ -96,11 +78,6 @@ if (window.onSnapshot && window.collection && window.db) {
 }
 
 
-// ======================================================
-// FUNCIONES AUXILIARES
-// ======================================================
-
-// Convertir hora a minutos
 function horaAMinutos(horaTexto) {
 
     const [h, m] = horaTexto.split(':').map(Number);
@@ -109,8 +86,6 @@ function horaAMinutos(horaTexto) {
 
 }
 
-
-// Convertir minutos a hora
 function minutosAHora(minutos) {
 
     const h = Math.floor(minutos / 60);
@@ -120,8 +95,6 @@ function minutosAHora(minutos) {
 
 }
 
-
-// Obtener fecha de hoy
 function obtenerFechaHoy() {
     const hoy = new Date();
     const yyyy = hoy.getFullYear();
@@ -136,35 +109,25 @@ function obtenerFechaHoy() {
 
 }
 
-
-// Convertir fecha en formato amigable (Resultado: 06-jun-2026)
 function formatearFechaAmigable(fechaTexto) {
     if (!fechaTexto) return "";
 
-    // Evita problemas de zona horaria forzando la hora a medianoche
     const fechaObjeto = new Date(fechaTexto + 'T00:00:00');
 
     const opciones = {
         day: '2-digit',
-        month: 'short', // Trae el mes abreviado (ej: "jun.")
+        month: 'short', 
         year: 'numeric'
     };
 
-    // Genera el texto inicial usando el idioma de la app (pt-BR)
+    
     let fechaFormateada = new Intl.DateTimeFormat('pt-BR', opciones).format(fechaObjeto);
     
-    // Limpiamos el texto: quitamos los puntos que pone el idioma y cambiamos los espacios por guiones
     fechaFormateada = fechaFormateada.replace(/\./g, '').replace(/ de /g, '-').replace(/ /g, '-');
 
-    // Lo pasamos todo a minúsculas para cumplir con el formato exacto que buscas
     return fechaFormateada.toLowerCase();
 }
 
-
-
-// ======================================================
-// FOTO DEL BARBERO
-// ======================================================
 
 function mostrarFotoBarbero() {
 
@@ -194,8 +157,6 @@ function calcularHorariosDisponibles() {
     const servicio = selectServicio.value;
     const barbero = selectBarbero.value;
     const fecha = inputFecha.value;
-
-    // Validar selección mínima
     if (!servicio || !barbero || !fecha) {
 
         selectHorario.innerHTML =
@@ -205,17 +166,8 @@ function calcularHorariosDisponibles() {
 
     }
 
-
-
-    // ==================================================
-    // VALIDAR DOMINGOS
-    // ==================================================
-
     const fechaObjeto = new Date(fecha + 'T00:00:00');
-
     const diaSemana = fechaObjeto.getDay();
-
-    // 0 = Domingo
     if (diaSemana === 0) {
 
         const mensajeDomingo = `
@@ -248,9 +200,6 @@ function calcularHorariosDisponibles() {
 
     }
 
-    // ==================================================
-    // PREPARAR HORARIOS
-    // ==================================================
 
     const duracionServicio = parseInt(servicio);
 
@@ -260,10 +209,6 @@ function calcularHorariosDisponibles() {
     let minInicio = horaAMinutos(horaApertura);
 
     const minFin = horaAMinutos(horaCierre);
-
-    // ==================================================
-    // VALIDAR HORA ACTUAL SI ES HOY
-    // ==================================================
 
     const fechaHoyStr = obtenerFechaHoy();
 
@@ -283,11 +228,8 @@ function calcularHorariosDisponibles() {
 
     }
 
-
-    // ==================================================
     // RECORRER HORARIOS DISPONIBLES
-    // ==================================================
-
+    
     for (
 
         let tiempoActual = minInicio;
@@ -336,10 +278,6 @@ function calcularHorariosDisponibles() {
         }
         
 
-      
-        
-
-        // Crear opción disponible
         if (horarioLibre) {
 
             const opcion = document.createElement('option');
@@ -357,9 +295,7 @@ function calcularHorariosDisponibles() {
 
 }
 
-// ======================================================
 // REGISTRAR CITA
-// ======================================================
 
 async function registrarCita(e) {
 
@@ -369,10 +305,8 @@ async function registrarCita(e) {
 
     const telefono = inputTelefono.value;
 
-    // Limpiar teléfono
     const telefonoLimpio = telefono.replace(/\D/g, '');
 
-    // Validación
     const regexTelefono = /^[0-9]{10,15}$/;
 
     if (!regexTelefono.test(telefonoLimpio)) {
@@ -397,11 +331,6 @@ async function registrarCita(e) {
 
     }
 
-
-    // ==================================================
-    // DATOS DEL SERVICIO
-    // ==================================================
-
     const nombreServicio =
         selectServicio.options[
             selectServicio.selectedIndex
@@ -425,9 +354,6 @@ async function registrarCita(e) {
     const horaFin =
         minutosAHora(minutosFin);
 
-    // ==================================================
-    // OBJETO DE CITA
-    // ==================================================
 
     const nuevaCita = {
 
@@ -449,9 +375,8 @@ async function registrarCita(e) {
 
     };
 
-    // ==================================================
     // GUARDAR EN FIREBASE
-    // ==================================================
+   
 
     try {
 
@@ -479,9 +404,6 @@ async function registrarCita(e) {
 
         }
 
-        // ==============================================
-        // PREPARAR WHATSAPP
-        // ==============================================
 
         const telefonoBarberia = "5519997672157";
 
@@ -489,7 +411,7 @@ async function registrarCita(e) {
             formatearFechaAmigable(fecha);
 
         const textoMensaje = `
- Barbearia Nilson!
+ SUPREME BARBERSHOP!
 
 Gostaria de confirmar meu agendamento:
 
@@ -503,10 +425,6 @@ Gostaria de confirmar meu agendamento:
 
         const urlWhatsApp =
             `https://wa.me/${telefonoBarberia}?text=${encodeURIComponent(textoMensaje)}`;
-
-        // ==============================================
-        // MOSTRAR NOTIFICACIÓN
-        // ==============================================
 
         const mensajeProfesional = `
             <strong>¡perfeito, ${nombre}!</strong><br>Seu horário com
@@ -522,9 +440,6 @@ Gostaria de confirmar meu agendamento:
             urlWhatsApp
         );
 
-        // ==============================================
-        // LIMPIAR FORMULARIO
-        // ==============================================
 
         formulario.reset();
 
@@ -548,20 +463,12 @@ Gostaria de confirmar meu agendamento:
 }
 
 
-// ======================================================
-// RESTRINGIR FECHAS PASADAS
-// ======================================================
-
 function restringirCalendario() {
 
     inputFecha.min = obtenerFechaHoy();
 
 }
 
-
-// ======================================================
-// NOTIFICACIONES
-// ======================================================
 
 function mostrarAvisoExito(mensaje, urlWhatsApp) {
 
@@ -588,9 +495,7 @@ function ocultarAvisoExito() {
 }
 
 
-// ======================================================
-// EFECTO VISUAL AL HACER SCROLL
-// ======================================================
+
 
 function efectoScroll() {
 
@@ -624,8 +529,5 @@ function efectoScroll() {
 }
 
 
-// ======================================================
-// INICIALIZACIÓN
-// ======================================================
 
 restringirCalendario();
